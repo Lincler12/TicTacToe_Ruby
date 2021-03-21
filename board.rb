@@ -10,7 +10,7 @@ class Board
   end
 
   def valid?(a_position)
-    return false if a_position[0] >= @a_grid.length|| a_position[1] >= @a_grid.length 
+    return false if a_position[0] >= @a_grid.length || a_position[1] >= @a_grid.length
 
     true
   end
@@ -32,7 +32,7 @@ class Board
     @a_grid.each do |line|
       line.each_with_index do |symbol, index|
         IO.console.print symbol
-        IO.console.print ' ' if index < @a_grid.length- 1
+        IO.console.print ' ' if index < @a_grid.length - 1
       end
       IO.console.print "\n"
     end
@@ -61,15 +61,17 @@ class Board
   def win_diagonal?(c_mark)
     condition1 = true
     condition2 = true
-    #iterate one diagonal
+    # iterate one diagonal
     (0...@a_grid.length).each do |j|
-      condition1= false if @a_grid[j][j] != c_mark
+      condition1 = false if @a_grid[j][j] != c_mark
       (0...@a_grid.length).reverse_each do |f|
-        condition2= false if @a_grid[f][j] != c_mark
+        condition2 = false if @a_grid[f][j] != c_mark
       end
     end
-       
-    return condition1 || condition2
+    condition1 || condition2
+  end
 
+  def win?(c_mark)
+    win_diagonal?(c_mark)||win_col?(c_mark)||win_row?(c_mark)
   end
 end
