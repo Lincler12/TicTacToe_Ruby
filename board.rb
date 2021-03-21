@@ -74,4 +74,9 @@ class Board
   def win?(c_mark)
     win_diagonal?(c_mark)||win_col?(c_mark)||win_row?(c_mark)
   end
+
+  def empty_positions?
+    @a_grid.each  {|line| line.each  {|symbol| return true if symbol == "_"}}
+    return false
+  end
 end
